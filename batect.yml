@@ -1,0 +1,11 @@
+containers:
+  hello-world:
+    image: alpine:3.12.0
+
+tasks:
+  say-hello:
+    description: Say hello to the world.
+    group: Greetings
+    run:
+      container: hello-world
+      command: echo "Hello world!"
