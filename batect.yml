@@ -14,3 +14,9 @@ tasks:
     run:
       container: yamllint
       command: yamllint .
+
+  lint:
+    description: Run all linting tasks.
+    group: Linting tasks
+    prerequisites:
+      - lint:yaml
