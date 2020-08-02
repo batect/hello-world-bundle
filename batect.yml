@@ -1,0 +1,16 @@
+containers:
+  yamllint:
+    build_directory: .batect/yamllint
+    volumes:
+      - local: .
+        container: /code
+        options: ro
+    working_directory: /code
+
+tasks:
+  lint:yaml:
+    description: Check formatting of all YAML files.
+    group: Linting tasks
+    run:
+      container: yamllint
+      command: yamllint .
