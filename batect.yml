@@ -7,7 +7,22 @@ containers:
         options: ro
     working_directory: /code
 
+  test-env:
+    build_directory: .batect/test-env
+    volumes:
+      - local: .
+        container: /code
+        options: ro
+    working_directory: /code
+    privileged: true
+
 tasks:
+  lint:
+    description: Run all linting tasks.
+    group: Linting tasks
+    prerequisites:
+      - lint:yaml
+
   lint:yaml:
     description: Check formatting of all YAML files.
     group: Linting tasks
@@ -15,8 +30,9 @@ tasks:
       container: yamllint
       command: yamllint .
 
-  lint:
-    description: Run all linting tasks.
-    group: Linting tasks
-    prerequisites:
-      - lint:yaml
+  test:
+    description: Run the tests.
+    group: Testing tasks
+    run:
+      container: test-env
+      command: python3 test/tests.py

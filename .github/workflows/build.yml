@@ -20,3 +20,6 @@ jobs:
 
       - name: Lint code
         run: ./batect lint
+
+      - name: Test bundle
+        run: ./batect test
