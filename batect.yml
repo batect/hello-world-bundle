@@ -24,12 +24,21 @@ containers:
         options: ro
     working_directory: /code
 
+  shellcheck:
+    build_directory: .batect/shellcheck
+    volumes:
+      - local: .
+        container: /code
+        options: ro
+    working_directory: /code
+
 tasks:
   lint:
     description: Run all linting tasks.
     group: Linting tasks
     prerequisites:
       - lint:docker
+      - lint:shell
       - lint:yaml
 
   lint:docker:
@@ -38,6 +47,13 @@ tasks:
     run:
       container: hadolint
       command: sh -c "hadolint $(find . -name Dockerfile)"
+
+  lint:shell:
+    description: Lint shell scripts.
+    group: Linting tasks
+    run:
+      container: shellcheck
+      command: sh -c "shellcheck $(find . -name '*.sh')"
 
   lint:yaml:
     description: Check formatting of all YAML files.

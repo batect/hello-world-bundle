@@ -6,6 +6,11 @@ updates:
   - package-ecosystem: docker
     schedule:
       interval: daily
+    directory: .batect/shellcheck
+    open-pull-requests-limit: 10
+  - package-ecosystem: docker
+    schedule:
+      interval: daily
     directory: .batect/test-env
     open-pull-requests-limit: 10
   - package-ecosystem: docker
