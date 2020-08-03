@@ -40,12 +40,21 @@ containers:
         options: ro
     working_directory: /code
 
+  yapf:
+    build_directory: .batect/yapf
+    volumes:
+      - local: .
+        container: /code
+        options: ro
+    working_directory: /code
+
 tasks:
   lint:
     description: Run all linting tasks.
     group: Linting tasks
     prerequisites:
       - lint:docker
+      - lint:python
       - check-format:shell
       - lint:shell
       - lint:yaml
@@ -56,6 +65,13 @@ tasks:
     run:
       container: hadolint
       command: sh -c "hadolint $(find . -name Dockerfile)"
+
+  lint:python:
+    description: Lint Python code.
+    group: Linting tasks
+    run:
+      container: yapf
+      command: yapf --diff --recursive .
 
   lint:shell:
     description: Lint shell scripts.

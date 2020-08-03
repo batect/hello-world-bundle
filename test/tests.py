@@ -20,7 +20,7 @@ class TestHelloWorldBundle(unittest.TestCase):
         result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
         if result.returncode != 0:
-            raise AssertionError('Command failed with exit code ' + str(result.returncode) + ' and output: \n' + result.stdout)
+            raise AssertionError(f'Command failed with exit code {result.returncode} and output: \n{result.stdout}')
 
         return result
 
