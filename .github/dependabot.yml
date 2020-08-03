@@ -18,3 +18,8 @@ updates:
       interval: daily
     directory: .batect/yamllint
     open-pull-requests-limit: 10
+  - package-ecosystem: docker
+    schedule:
+      interval: daily
+    directory: .batect/yapf
+    open-pull-requests-limit: 10
