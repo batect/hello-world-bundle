@@ -1,7 +1,7 @@
 # hello-world-bundle
 
 [![Build Status](https://img.shields.io/github/workflow/status/batect/hello-world-bundle/Pipeline/master)](https://github.com/batect/hello-world-bundle/actions?query=workflow%3APipeline+branch%3Amaster)
-[![License](https://img.shields.io/github/license/batect/batect.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/github/license/batect/hello-world-bundle.svg)](https://opensource.org/licenses/Apache-2.0)
 
 A sample bundle for [batect](https://batect.dev).
 
@@ -17,7 +17,7 @@ Add the following to your `batect.yml`:
 include:
   - type: git
     repo: https://github.com/batect/hello-world-bundle.git
-    ref: 0.2.0
+    ref: XXX # Replace with latest version from https://github.com/batect/hello-world-bundle/releases
 ```
 
 ### Tasks
