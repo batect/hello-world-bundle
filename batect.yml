@@ -32,12 +32,21 @@ containers:
         options: ro
     working_directory: /code
 
+  shfmt:
+    image: mvdan/shfmt:v3.1.2
+    volumes:
+      - local: .
+        container: /code
+        options: ro
+    working_directory: /code
+
 tasks:
   lint:
     description: Run all linting tasks.
     group: Linting tasks
     prerequisites:
       - lint:docker
+      - check-format:shell
       - lint:shell
       - lint:yaml
 
@@ -54,6 +63,13 @@ tasks:
     run:
       container: shellcheck
       command: sh -c "shellcheck $(find . -name '*.sh')"
+
+  check-format:shell:
+    description: Check formatting of shell scripts.
+    group: Linting tasks
+    run:
+      container: shfmt
+      command: -d .
 
   lint:yaml:
     description: Check formatting of all YAML files.

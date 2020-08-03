@@ -10,3 +10,6 @@ indent_size = 2
 
 [*.{bat,cmd,ps1}]
 end_of_line = crlf
+
+[batect]
+ignore = true
