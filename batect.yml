@@ -16,12 +16,28 @@ containers:
     working_directory: /code
     privileged: true
 
+  hadolint:
+    image: hadolint/hadolint:v1.18.0
+    volumes:
+      - local: .
+        container: /code
+        options: ro
+    working_directory: /code
+
 tasks:
   lint:
     description: Run all linting tasks.
     group: Linting tasks
     prerequisites:
+      - lint:docker
       - lint:yaml
+
+  lint:docker:
+    description: Lint Dockerfiles.
+    group: Linting tasks
+    run:
+      container: hadolint
+      command: sh -c "hadolint $(find . -name Dockerfile)"
 
   lint:yaml:
     description: Check formatting of all YAML files.
