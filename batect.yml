@@ -49,15 +49,41 @@ containers:
     working_directory: /code
 
 tasks:
+  check-format:
+    description: Run all formatting check tasks.
+    group: Formatting check tasks
+    prerequisites:
+      - check-format:python
+      - check-format:shell
+      - check-format:yaml
+
+  check-format:shell:
+    description: Check formatting of shell scripts.
+    group: Formatting check tasks
+    run:
+      container: shfmt
+      command: -d .
+
+  check-format:yaml:
+    description: Check formatting of all YAML files.
+    group: Formatting check tasks
+    run:
+      container: yamllint
+      command: yamllint .
+
+  check-format:python:
+    description: Check formatting of Python code.
+    group: Formatting check tasks
+    run:
+      container: yapf
+      command: yapf --diff --recursive .
+
   lint:
     description: Run all linting tasks.
     group: Linting tasks
     prerequisites:
       - lint:docker
-      - lint:python
-      - check-format:shell
       - lint:shell
-      - lint:yaml
 
   lint:docker:
     description: Lint Dockerfiles.
@@ -66,33 +92,12 @@ tasks:
       container: hadolint
       command: sh -c "hadolint $(find . -name Dockerfile)"
 
-  lint:python:
-    description: Lint Python code.
-    group: Linting tasks
-    run:
-      container: yapf
-      command: yapf --diff --recursive .
-
   lint:shell:
     description: Lint shell scripts.
     group: Linting tasks
     run:
       container: shellcheck
       command: sh -c "shellcheck $(find . -name '*.sh')"
-
-  check-format:shell:
-    description: Check formatting of shell scripts.
-    group: Linting tasks
-    run:
-      container: shfmt
-      command: -d .
-
-  lint:yaml:
-    description: Check formatting of all YAML files.
-    group: Linting tasks
-    run:
-      container: yamllint
-      command: yamllint .
 
   test:
     description: Run the tests.

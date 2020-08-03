@@ -18,6 +18,9 @@ jobs:
           path: ~/.batect/cache
           key: batect-${{ hashFiles('batect') }}
 
+      - name: Check formatting
+        run: ./batect check-format
+
       - name: Lint code
         run: ./batect lint
 
