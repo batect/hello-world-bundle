@@ -3,7 +3,7 @@
 [![Build Status](https://img.shields.io/github/workflow/status/batect/hello-world-bundle/Pipeline/master)](https://github.com/batect/hello-world-bundle/actions?query=workflow%3APipeline+branch%3Amaster)
 [![License](https://img.shields.io/github/license/batect/hello-world-bundle.svg)](https://opensource.org/licenses/Apache-2.0)
 
-A sample bundle for [batect](https://batect.dev).
+A sample bundle for [Batect](https://batect.dev).
 
 It is intended to demonstrate a basic development experience for creating a bundle, including an automated test setup.
 
