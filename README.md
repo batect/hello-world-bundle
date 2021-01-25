@@ -1,6 +1,6 @@
 # hello-world-bundle
 
-[![Build Status](https://img.shields.io/github/workflow/status/batect/hello-world-bundle/Pipeline/master)](https://github.com/batect/hello-world-bundle/actions?query=workflow%3APipeline+branch%3Amaster)
+[![Build Status](https://img.shields.io/github/workflow/status/batect/hello-world-bundle/Pipeline/main)](https://github.com/batect/hello-world-bundle/actions?query=workflow%3APipeline+branch%3Amain)
 [![License](https://img.shields.io/github/license/batect/hello-world-bundle.svg)](https://opensource.org/licenses/Apache-2.0)
 
 A sample bundle for [Batect](https://batect.dev).
