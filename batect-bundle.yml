@@ -1,6 +1,6 @@
 containers:
   hello-world:
-    image: alpine:3.13.2
+    image: alpine:3.13.3
 
 tasks:
   say-hello:
